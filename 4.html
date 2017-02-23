@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="E:\scripts\jquery.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+	$("div#panel div.content").hide();
+	/*$("div#panel div.head").mouseover(function(){
+			$("div#panel div.content").show("fast");
+		}).mouseout(function(){
+			$(this).next().hide();
+			})*///和下面的hover(function(){},function(){});效果一样
+		$("div#panel div.head").hover(function(){
+			$("div#panel div.content").show("fast");
+	  	},function(){
+			$(this).next().hide();
+		});
+    var page = 1;
+    var i = 4; //每版放4个图片
+    //向后 按钮
+    $("span.next").click(function(){    //绑定click事件
+	     var $parent = $(this).parents("div.v_show");//根据当前点击元素获取到父元素
+		 var $v_show = $parent.find("div.v_content_list"); //寻找到“视频内容展示区域”
+		 var $v_content = $parent.find("div.v_content"); //寻找到“视频内容展示区域”外围的DIV元素
+		 var v_width = $v_content.width() ;
+		 var len = $v_show.find("li").length;
+		 var page_count = Math.ceil(len / i) ;   //只要不是整数，就往大的方向取最小的整数
+		 if( !$v_show.is(":animated") ){    //判断“视频内容展示区域”是否正在处于动画
+			  if( page == page_count ){  //已经到最后一个版面了,如果再向后，必须跳转到第一个版面。
+				$v_show.animate({ left : '0px'}, "slow"); //通过改变left值，跳转到第一个版面
+				page = 1;
+			  }else{
+				$v_show.animate({ left : '-='+v_width}, "slow");  //通过改变left值，达到每次换一个版面
+				page++;
+			 }
+			//$parent.find("span").eq((page-1)).addClass("current").siblings().removeClass("current");
+		 }
+   });
+   
+    $("span.prev").click(function(){
+	     var $parent = $(this).parents("div.v_show");//根据当前点击元素获取到父元素
+		 var $v_show = $parent.find("div.v_content_list"); //寻找到“视频内容展示区域”
+		 var $v_content = $parent.find("div.v_content"); //寻找到“视频内容展示区域”外围的DIV元素
+		 var v_width = $v_content.width();
+		 var len = $v_show.find("li").length;
+		 var page_count = Math.ceil(len / i) ;   //只要不是整数，就往大的方向取最小的整数
+		   if( !$v_show.is(":animated") ){   //判断“视频内容展示区域”是否正在处于动画
+		 	 if( page == 1 ){  //已经到第一个版面了,如果再向前，必须跳转到最后一个版面。
+				$v_show.animate({ left : '-='+v_width*(page_count-1) }, "slow");
+				page = page_count;
+			}else{
+				$v_show.animate({ left : '+='+v_width }, "slow");
+				page--;
+			}
+		   }
+			});
+});
+</script>
+<style type="text/css">
+a { color:#2B93D2; text-decoration:none; }
+a:hover { color:#E31E1C; text-decoration:underline; }
+ul{
+	
+	float:left;
+	padding:4px;
+	
+}
+ul li { 
+	list-style:none; 
+	float:left;
+	margin: 6px 6px 6px 6px;
+	
+}
+.v_show{
+	overflow:hidden;
+	width:570px;
+	height:230px;
+	border:#999 1px solid;
+	margin:20px 0 0px 60px;
+	
+}
+.v_show h2{
+	margin:3px 9px auto;
+	float:left;
+	display:inline;
+	background:#CCC;
+	
+}
+.v_show div.v_caption {
+	background:url(images\btn_cartoon.gif) no-repeat;
+	display:inline;
+	background:#CCC;
+	float:left;
+	width:575px;
+	height:35px;
+	}
+
+.v_show div.v_caption div{
+	
+	float:left;
+	display:inline;
+	background:#CCC;
+	height:27px;
+	}
+.v_show div.v_caption em{
+	
+	float:right;
+	display:inline;
+	background:#CCC;
+	height:27px;
+	}
+.v_show div.v_caption span{
+	background:url(images\btn_cartoon.gif) no-repeat ;
+	
+	float:left;
+	height:24px;
+	text-align:center;
+	top:3px;
+	margin:4px 0 0 4px;
+	font-size:16px;
+	display:inline;
+	background:#CCC;
+	overflow:hidden;
+	
+}
+.v_show div.v_caption em a{
+	
+	height:24px;
+	width:244px;
+	text-align:center;
+	top:3px;
+	margin:0 5px 0 4px;
+	font-size:16px;
+	display:inline;
+	background:#CCC;
+	}
+.v_content {
+	
+	position:relative;
+	float:left;
+	text-align:center;
+	display:block;
+	width:560px;
+	font-size:10px;
+	}
+.v_content_list {
+	
+	width:2500px;
+	position:relative;
+	top:0px; 
+	left:0px;
+	}
+	
+</style>
+</head>
+
+<body>
+<div id="panel">
+	<div class="head" href="#"> 什么是jquery</div>
+    <div class="content"> jquery是继prototype以后又一优秀的javscript库，它是由john resig创建于2006年的开源项目</div>
+</div>
+<div class="v_show">
+	<div class="v_caption">
+		<h2 class="cartoon" title="卡通动漫">卡通动漫</h2>
+		<div class="highlight_tip">
+			<span class="current">1</span><span>2</span><span>3</span><span>4</span>
+		</div>
+		<div class="change_btn">
+			<span class="prev" >上一页</span>
+			<span class="next">下一页</span>
+		</div>
+		<em><a href="#">更多>></a></em>
+	</div>
+	<div class="v_content">
+		<div  class="v_content_list">
+			<ul>
+            	<li><a href="#"><img src="images/01.jpg" alt="海贼王"/></br></a><a href="#">海贼王</a></br><span>播放:<em>28,276</em></span></li>
+                <li><a href="#"><img src="images/01.jpg" alt="海贼王"/></br></a><a href="#">海贼王</a></br><span>播放:<em>28,276</em></span></li>
+                <li><a href="#"><img src="images/01.jpg" alt="海贼王"/></br></a><a href="#">海贼王</a></br><span>播放:<em>28,276</em></span></li>
+                <li><a href="#"><img src="images/01.jpg" alt="海贼王"/></br></a><a href="#">海贼王</a></br><span>播放:<em>28,276</em></span></li>
+                <li><a href="#"><img src="images/02.jpg" alt="哆啦A梦"/></br></a><a href="#">哆啦A梦</a></br><span>播放:<em>28,276</em></span></li>
+                 <li><a href="#"><img src="images/02.jpg" alt="哆啦A梦"/></br></a><a href="#">哆啦A梦</a></br><span>播放:<em>28,276</em></span></li>
+                  <li><a href="#"><img src="images/02.jpg" alt="哆啦A梦"/></br></a><a href="#">哆啦A梦</a></br><span>播放:<em>28,276</em></span></li>
+                   <li><a href="#"><img src="images/02.jpg" alt="哆啦A梦"/></br></a><a href="#">哆啦A梦</a></br><span>播放:<em>28,276</em></span></li>
+                <li><a href="#"><img src="images/03.jpg" alt="火影忍者"/></br></a><a href="#">火影忍者</a></br><span>播放:<em>28,276</em></span></li>
+                   <li><a href="#"><img src="images/03.jpg" alt="火影忍者"/></br></a><a href="#">火影忍者</a></br><span>播放:<em>28,276</em></span></li>
+                      <li><a href="#"><img src="images/03.jpg" alt="火影忍者"/></br></a><a href="#">火影忍者</a></br><span>播放:<em>28,276</em></span></li>
+                         <li><a href="#"><img src="images/03.jpg" alt="火影忍者"/></br></a><a href="#">火影忍者</a></br><span>播放:<em>28,276</em></span></li>
+                <li><a href="#"><img src="images/04.jpg" alt="龙珠"/></br></a><a href="#">龙珠</a></br><span>播放:<em>28,276</em></span></li>
+                 <li><a href="#"><img src="images/04.jpg" alt="龙珠"/></br></a><a href="#">龙珠</a></br><span>播放:<em>28,276</em></span></li>
+                  <li><a href="#"><img src="images/04.jpg" alt="龙珠"/></br></a><a href="#">龙珠</a></br><span>播放:<em>28,276</em></span></li>
+                   <li><a href="#"><img src="images/04.jpg" alt="龙珠"/></br></a><a href="#">龙珠</a></br><span>播放:<em>28,276</em></span></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
