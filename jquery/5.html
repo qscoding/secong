@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="jquery.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+		//alert("hello word");
+		$(":input").focus(function(){
+			$(this).addClass("focus");
+		}).blur(function(){
+			$(this).removeClass("focus");
+			});
+		$("span.bigger").click(function(){
+			var $thisel=$("#para").css("font-size");
+			var text=parseInt($thisel,10);//去掉px并转换成十进制的
+			var unit=$thisel.slice(-2);//取出px
+			text=text+2;
+			$("#para").css("font-size",text+unit);
+			});
+		$("span.small").click(function(){
+			var $thisel=$("#para").css("font-size");
+			var text=parseInt($thisel,10);//去掉px并转换成十进制的
+			var unit=$thisel.slice(-2);//取出px
+			text=text-2;
+			$("#para").css("font-size",text+unit);
+			});
+		$("span.bigger1").click(function(){
+			if($("#comment").height()<500)
+			$("#coment").height($("#coment").height()+50);//获得的没有px
+			});
+		$("span.small").click(function(){
+			if($("#comment").height()>50)
+			$("#coment").height($("#coment").height()-50);//获得的没有px
+			});
+	});
+	
+
+</script>
+<style type="text/css">
+fieldset,div{
+	margin:5px auto;
+}
+.focus{
+	border:1px solid #FF0;
+	background:#FF6;
+}
+
+</style>
+</head>
+
+<body>
+<form action="#" method="POST" id="regForm">
+	<fieldset>
+    	<legend>个人基本信息</legend>
+        <div>
+        	<label for="username">名称：</label>
+            <input id="username" type="text"/>
+        </div>
+        <div>
+        	<label for="pass">密码：</label>
+            <input id="pass" type="password"/>
+        </div>
+        <div>
+        	<label for="msg">详细信息：</label>
+            <textarea id="msg" ></textarea>
+        </div>
+    </fieldset>
+</form>
+<div class="msg">
+	<div class="msg_caption">
+    	<span class="bigger">放大</span>
+        <span class="small">缩小</span>
+    </div>
+    <div>
+    	<p id="para">
+        nihaondfklsnfsakfffffffffffffffffffffffasnas
+        safklnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+        fsnaklllllllllllllllllllllllllllllllllllll
+        fnaslkkkkfnkslanffffffffffffffffffffffffka
+        asfnnasskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkf
+        sfnkaslllllllllllllllllllllllafaslffffffffffffffffff
+        </p>
+        <textarea id="coment" rows="7" cols="20">nihaondfklsnfsakfffffffffffffffffffffffasnas
+        safklnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+        fsnaklllllllllllllllllllllllllllllllllllll
+        fnaslkkkkfnkslanffffffffffffffffffffffffka
+        asfnnasskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkf
+        sfnkaslllllllllllllllllllllllafaslffffffffffffffffff</textarea>
+    </div>
+</div>
+</body>
+</html>

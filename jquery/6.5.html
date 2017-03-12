@@ -1,0 +1,47 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" >
+	$(document).ready(function(){
+		$.getScript('jquery.color.js',function(){
+		 	$("#go").click(function(){
+				$(".block").animate({backgroundColor:'pink'},1000)
+							.animate({backgroundColor:'blue'},1000);
+				})
+		});
+			$("#send").click(function(){//alert("ss");
+			$.getScript('test.js');
+		});
+		$("#json").click(function(){
+			$.getJSON("test.json",function(data){
+				$("#come").empty();
+				html='';
+				$.each(data,function(commentIndex,comment){
+					html+='<div class="comment"><p>'+comment['username']+'</p><p>'+comment['content']+'</p><div>';
+					})
+					$("#come").html(html);//$.ajax()方法参见课本
+				});
+			});
+	});
+</script>
+<style type="text/css">
+.block{width:200px;height:200px;background:#333;}
+</style>
+</head>
+<body>
+<p><input type="button" id="send" value="加载"></p>
+<div class="comment">已有评论</div>
+
+<button id="go">运行</button>
+<div class="block"></div>
+
+<button id="json">json</button>
+<div id="come"></div>
+
+<div id="resText"></div>
+
+</body>
+</html>

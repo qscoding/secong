@@ -1,0 +1,53 @@
+body{
+	text-align:center;
+	font-size:10px;
+}
+#reset{
+	font-size:14px;
+	width:200px;
+	height:20px;
+	float:left;
+	}
+#isreset{
+	float:left;
+	width:30px;
+
+	}
+label{
+	float:left;
+	padding:3px;
+	margin:-1px 0px 0px -8px;
+	font-size:15px;
+}
+h3{ 
+	position:absolute;
+	float:left;
+	font-size:24px;}
+#btn1,#btn2,#btn3,#btn4,#btn5{
+	position:relative;
+	margin:70px 5px 30px 4px;
+	float:left;
+	width:230px;
+	}
+div,span,p{
+	position:relative;
+	width:150px;
+	height:150px;
+	margin:5px;
+	background:#aaa;
+	border:#000 3px solid;
+	float:left;
+	font-size:17px;
+	font-family:Verdana;	
+}
+div.mini{
+	position:relative;
+	width:55px;
+	height:55px;
+	background-color:#aaa;	
+	font-size:12px;
+}
+div.hide{
+	position:relative;
+	display:none;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+			//alert("his");
+			$("#send").click(function(){
+				$.get("get1.php",$("#form1").serialize(),function(data,textStatus){
+			//		$.get("get1.php","usernam="+encodeURIComponent($('#username').val())+"&content="+encodeURIComponent($("#content").val()),function(data,textStatus){//也可以实现，字符串方式
+					$("#resText").html(data);
+					});
+				});
+		});
+</script>
+</head>
+
+<body>
+<form id="form1" action="#">
+	<p>评论</p>
+    <p>姓名：<input type="text" name="username" id="username"/></p>
+    <p>内容：<textarea name="content" id="content" rows="2" clos="20"></textarea></p>
+    <p><input type="button" id="send" value="提交"></p>
+	<div class="comment">已有评论</div>
+    <div id="resText"></div>
+</form> 
+</body>
+</html>
